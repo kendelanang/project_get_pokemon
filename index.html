@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesheets.css" />
+    <title>Progate AJAX Get Pokemon</title>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <h1>Get Pokemon!</h1>
+      <button type="button" onclick="fetchData()">Get!</button>
+      <div id="cardo" class="cardo"></div>
+    </div>
+
+    <script>
+      async function fetchData() {
+        const response = await fetch(
+          "https://pokeapi.co/api/v2/pokemon?limit=30",
+          { method: "GET" }
+        );
+        const json = await response.json();
+        const results = json.results;
+
+        let data = "";
+        let templateList = "";
+        for (i = 0; i < results.length; i++) {
+          const nama = results[i].name;
+          const url = results[i].url;
+          const responsePoke = await fetch(url, { method: "GET" });
+
+          const jsonPoke = await responsePoke.json();
+          let name = jsonPoke.name;
+          let number = jsonPoke.id;
+          let image = jsonPoke.sprites.front_default;
+          let type = jsonPoke.types[0].type.name;
+          console.log(type);
+
+          if (type == "grass") {
+            templateList =
+              templateList +
+              `
+                <div class="card grass">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+
+          if (type == "fire") {
+            templateList =
+              templateList +
+              `
+                <div class="card fire">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+
+          if (type == "water") {
+            templateList =
+              templateList +
+              `
+                <div class="card water">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+
+          if (type == "bug") {
+            templateList =
+              templateList +
+              `
+                <div class="card bug">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+
+          if (type == "normal") {
+            templateList =
+              templateList +
+              `
+                <div class="card normal">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+
+          if (type == "poison") {
+            templateList =
+              templateList +
+              `
+                <div class="card poison">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+
+          if (type == "electric") {
+            templateList =
+              templateList +
+              `
+                <div class="card electric">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+
+          if (type == "ground") {
+            templateList =
+              templateList +
+              `
+                <div class="card ground">
+                  <img src="${image}" />
+                  <p>${number}</p>
+                  <p>${name}</p>
+                  <p>${type}</p>
+                </div>
+              `;
+            document.getElementById("cardo").innerHTML = templateList;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
